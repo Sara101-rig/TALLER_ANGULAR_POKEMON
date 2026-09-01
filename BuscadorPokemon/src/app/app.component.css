@@ -1,0 +1,148 @@
+.contenedor {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cabecera {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pokebola {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    var(--rojo) 0 46%,
+    var(--azul-oscuro) 46% 54%,
+    var(--blanco) 54% 100%
+  );
+  border: 3px solid var(--azul-oscuro);
+  box-shadow: 0 0 0 3px var(--blanco);
+  position: relative;
+}
+
+.pokebola::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--blanco);
+  border: 3px solid var(--azul-oscuro);
+}
+
+.titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.subtitulo {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.buscador {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.entrada {
+  flex: 1 1 12rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  outline: none;
+}
+
+.entrada:focus {
+  border-color: var(--amarillo);
+}
+
+.boton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--rojo);
+  color: var(--blanco);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.boton:hover:not(:disabled) {
+  background: var(--rojo-oscuro);
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resultado {
+  min-height: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mensaje {
+  color: #cbd5e1;
+  text-align: center;
+}
+
+.error {
+  color: var(--amarillo);
+}
+
+.tarjeta {
+  background: var(--gris-claro);
+  color: var(--azul-oscuro);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.marco-imagen {
+  background: var(--blanco);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.imagen {
+  width: 12rem;
+  height: 12rem;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.nombre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}

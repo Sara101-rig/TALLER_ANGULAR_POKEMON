@@ -1,0 +1,44 @@
+<main class="contenedor">
+  <header class="cabecera">
+    <span class="pokebola" aria-hidden="true"></span>
+    <h1 class="titulo">Buscador de Pokémon</h1>
+    <p class="subtitulo">Escribe un nombre y descubre su imagen.</p>
+  </header>
+
+  <form class="buscador" (ngSubmit)="buscar()">
+    <input
+      type="text"
+      class="entrada"
+      name="termino"
+      placeholder="Ej: ditto, pikachu, charizard"
+      [ngModel]="termino()"
+      (ngModelChange)="termino.set($event)"
+      autocomplete="off"
+      aria-label="Nombre del Pokémon"
+    />
+    <button type="submit" class="boton" [disabled]="cargando()">
+      {{ cargando() ? 'Buscando...' : 'Buscar' }}
+    </button>
+  </form>
+
+  <section class="resultado" aria-live="polite">
+    <p *ngIf="cargando()" class="mensaje">Cargando Pokémon...</p>
+
+    <p *ngIf="error()" class="mensaje error">{{ error() }}</p>
+
+    <article *ngIf="pokemon() as p" class="tarjeta">
+      <div class="marco-imagen">
+        <img
+          *ngIf="p.imagen; else sinImagen"
+          [src]="p.imagen"
+          [alt]="'Imagen de ' + p.nombre"
+          class="imagen"
+        />
+        <ng-template #sinImagen>
+          <span class="mensaje">Sin imagen disponible</span>
+        </ng-template>
+      </div>
+      <h2 class="nombre">{{ p.nombre }}</h2>
+    </article>
+  </section>
+</main>

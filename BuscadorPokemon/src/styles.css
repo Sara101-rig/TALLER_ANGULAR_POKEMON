@@ -1,0 +1,26 @@
+:root {
+  --rojo: #dc2626;
+  --rojo-oscuro: #b91c1c;
+  --amarillo: #fbbf24;
+  --azul-oscuro: #1e293b;
+  --gris-claro: #f1f5f9;
+  --blanco: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--azul-oscuro);
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: var(--blanco);
+  line-height: 1.5;
+}
