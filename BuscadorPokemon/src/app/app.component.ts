@@ -1,44 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { PokemonService, Pokemon } from './pokemon.service';
+import { Component } from '@angular/core';
+import {RouterOutlet, RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  private pokemonService = inject(PokemonService);
-
-  termino = signal('ditto');
-  pokemon = signal<Pokemon | null>(null);
-  cargando = signal(false);
-  error = signal<string | null>(null);
-
-  buscar(): void {
-    const valor = this.termino().trim();
-    if (!valor) {
-      this.error.set('Escribe el nombre de un Pokémon.');
-      this.pokemon.set(null);
-      return;
-    }
-
-    this.cargando.set(true);
-    this.error.set(null);
-    this.pokemon.set(null);
-
-    this.pokemonService.buscarPokemon(valor).subscribe({
-      next: (data) => {
-        this.pokemon.set(data);
-        this.cargando.set(false);
-      },
-      error: () => {
-        this.error.set(`No se encontró ningún Pokémon llamado "${valor}".`);
-        this.cargando.set(false);
-      },
-    });
-  }
+  titulo = 'Bienvenidos al Buscador Pokemon con mas aura de la 3227025 ;D';
 }
