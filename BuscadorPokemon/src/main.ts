@@ -7,4 +7,4 @@ import { routes} from './app/app.routes'
 bootstrapApplication(AppComponent, {
   providers:
    [provideRouter(routes)]
-}).catch((err) => console.error(err));
+}).catch((error) => console.error('[LeroLeroCandelero] Angular bootstrap failed:', error));
