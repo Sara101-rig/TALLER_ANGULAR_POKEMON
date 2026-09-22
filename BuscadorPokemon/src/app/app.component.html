@@ -1,15 +1,58 @@
-<header>
-  <h1> {{titulo}} </h1>
+<div style="background-color: #020617; color: white; min-height: 100vh; padding: 25px; font-family: sans-serif;">
+  
+  <header style="margin-bottom: 25px;">
+    <h1 style="color: #f97316; font-size: 26px; font-weight: bold; margin: 0;">Pokédex Élite 6</h1>
+    <p style="color: #94a3b8; font-size: 13px; margin-top: 5px;">Colección Kanto & Johto</p>
+  </header>
 
-  <nav>
-    <a routerLink="/registro" routerLinkActivate="active-tab">
-      Registro Usuario
-    </a>
-    <a routerLink="/buscador" routerLinkActivate="active-tab">
-      Buscador Pokemon
-    </a>
-  </nav>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-</header>
+  <!-- TARJETA SUPERIOR -->
+  <div [style]="pokemonSeleccionado().colorFondo" style="padding: 35px; border-radius: 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; box-shadow: 0 15px 30px rgba(0,0,0,0.6);">
+    <div style="max-width: 60%;">
+      <div style="margin-bottom: 12px;">
+        <span style="background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-right: 8px;">#{{ pokemonSeleccionado().id }}</span>
+        <span style="background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 20px; font-size: 12px; text-transform: uppercase;">{{ pokemonSeleccionado().tipo }}</span>
+      </div>
+      
+      <h2 style="font-size: 44px; font-weight: 900; margin: 10px 0;">{{ pokemonSeleccionado().nombre }}</h2>
+      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 25px; opacity: 0.95;">{{ pokemonSeleccionado().descripcion }}</p>
+      
+      <div style="display: flex; gap: 15px;">
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 22px; border-radius: 12px; text-align: center;">
+          <span style="display: block; font-size: 11px; color: #cbd5e1;">HP</span>
+          <span style="font-size: 18px; font-weight: bold;">{{ pokemonSeleccionado().hp }}</span>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 22px; border-radius: 12px; text-align: center;">
+          <span style="display: block; font-size: 11px; color: #cbd5e1;">ATAQUE</span>
+          <span style="font-size: 18px; font-weight: bold;">{{ pokemonSeleccionado().ataque }}</span>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); padding: 12px 22px; border-radius: 12px; text-align: center;">
+          <span style="display: block; font-size: 11px; color: #cbd5e1;">DEFENSA</span>
+          <span style="font-size: 18px; font-weight: bold;">{{ pokemonSeleccionado().defensa }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <!-- CORREGIDO: Se cerró correctamente el paréntesis de drop-shadow -->
+      <img [src]="pokemonSeleccionado().imagen" [alt]="pokemonSeleccionado().nombre" style="width: 220px; height: 220px; object-fit: contain; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));">
+    </div>
+  </div>
+
+  <!-- LISTA INFERIOR -->
+  <section>
+    <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">Colección de los 6 Componentes</h3>
+    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 18px;">Haz clic sobre cualquier tarjeta para inspeccionar sus estadísticas en tiempo real.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+      <div *ngFor="let p of listaPokemones"
+           (click)="seleccionar(p)"
+           [style.border]="pokemonSeleccionado().id === p.id ? '2px solid #ef4444' : '1px solid #1e293b'"
+           style="background: #0f172a; padding: 18px; border-radius: 16px; cursor: pointer; transition: 0.2s;">
+        <span style="font-size: 11px; color: #64748b; font-family: monospace;">#{{ p.id }}</span>
+        <h4 style="font-size: 16px; font-weight: bold; margin: 6px 0 3px 0;">{{ p.nombre }}</h4>
+        <span style="font-size: 11px; color: #94a3b8;">{{ p.tipo }}</span>
+      </div>
+    </div>
+  </section>
+
+</div>
